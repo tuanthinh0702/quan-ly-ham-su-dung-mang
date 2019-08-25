@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>[*Bài tập] Ứng dụng quản lý sản phẩm sử dụng hàm</title>
+</head>
+<body onload="showProduct()">
+<h2>Add New Product</h2>
+<input placeholder="New Product" type="text" id="inputProduct"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+<button onclick="addProduct()">Add</button>
+<h2>Display All Product</h2>
+<div style="width:50%"><h3>ProductName</h3></div>
+<div id="amount"></div>
+<table cellspacing='0' cellpadding='5' id="display"></table>
+<script>
+  let data = '';
+  let product = [];
+  function showProduct(){
+    let amount = " "+product.length + " product";
+    document.getElementById("amount").innerHTML = amount;
+    for(let i = 0;i<product.length;i++){
+      data += "<tr>";
+      data += "<td>"+product[i]+"</td>";
+      data += "<td><button onclick='edit("+i+")'>Edit</button></td>";
+      data += "<td><button onclick='erase("+i+")'>Delete</button></td>";
+      data += "</tr>";
+    }
+    document.getElementById("display").innerHTML = data;
+  }
+  function addProduct(){
+    let inputProduct = document.getElementById("inputProduct").value;
+    product.push(inputProduct);
+    data = '';
+    showProduct();
+  }
+  function erase(num) {
+    product.splice(num,1);
+    data = '';
+    showProduct();
+  }
+  function edit(num){
+    let editProduct = prompt();
+    product.splice(num,1,editProduct);
+    data = '';
+    showProduct();
+  }
+</script>
+</body>
+</html>
